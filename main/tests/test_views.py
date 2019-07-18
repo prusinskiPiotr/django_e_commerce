@@ -15,3 +15,8 @@ class TestPage(TestCase):
         self.assertTemplateUsed(response, 'about_us.html')
         self.assertContains(response, 'About us')
 
+    def test_contact_us_page_works(self):
+        response = self.client.get(reverse("contact_us"))
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'contact_us.html')
+        self.assertContains(response, "Contact us")
