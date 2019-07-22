@@ -1,6 +1,8 @@
 from django.shortcuts import render
+from django.views.generic import ListView
 from django.views.generic.edit import FormView
-from main import forms
+from django.shortcuts import get_object_or_404
+from main import forms, models
 
 
 class ContactUsView(FormView):
@@ -12,3 +14,22 @@ class ContactUsView(FormView):
         form.send_mail()
         return super().form_valid(form)
 
+
+class ProductListView(ListView):
+    template_name = 'product_list.html'
+    paginate_by = 4
+
+    def get_queryset(self):
+        tag = self.kwargs['tag']
+        self.tag = None
+        if tag != "all":
+            self.tag = get_object_or_404(
+                models.ProductTag, slug=tag
+            )
+        if self.tag:
+            products = models.Product.objects.active().filter(
+                tags = self.tag
+            )
+        else:
+            products = models.Product.objects.active()
+        return products.order_by("name")
