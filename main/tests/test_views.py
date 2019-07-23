@@ -36,7 +36,7 @@ class TestPage(TestCase):
             active=False,
         )
         response = self.client.get(
-            reverse("products", kwargs={"tag": "all"})
+            reverse("product_list", kwargs={"tag": "all"})
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "BookTime")
@@ -62,7 +62,7 @@ class TestPage(TestCase):
             price=Decimal("12.00"),
         )
         response = self.client.get(
-            reverse("products", kwargs={"tag": "opensource"})
+            reverse("product_list", kwargs={"tag": "opensource"})
         )
         self.assertEqual(response.status_code, 200)
         self.assertContains(response, "BookTime")

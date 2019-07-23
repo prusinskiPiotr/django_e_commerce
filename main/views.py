@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.views.generic import ListView
+from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
 from django.shortcuts import get_object_or_404
 from main import forms, models
@@ -33,3 +33,8 @@ class ProductListView(ListView):
         else:
             products = models.Product.objects.active()
         return products.order_by("name")
+
+
+class ProductDetailView(DetailView):
+    template_name = 'product_detail.html'
+    model = models.Product
