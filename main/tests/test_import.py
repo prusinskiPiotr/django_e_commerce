@@ -11,16 +11,16 @@ class TestImport(TestCase):
     def test_import_data(self):
         out = StringIO()
         args = [
-            'main/fixtures/product-sample.csv',
-            'main/fixtures/product-sampleimages/'
+            "main/fixtures/product-sample.csv",
+            "main/fixtures/product-sampleimages/",
         ]
-        print(type(out))
-        call_command('import_data', *args, stoud=out)
+
+        call_command("import_data", *args, stdout=out)
 
         expected_out = (
-            "Importing products"  
-            "Products processed=3 (created=3)\n",
-            "Tags processed=6 (created=6)\n",
+            "Importing products\n"
+            "Products processed=3 (created=3)\n"
+            "Tags processed=6 (created=6)\n"
             "Images processed=3\n"
         )
 
