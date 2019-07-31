@@ -24,6 +24,7 @@ urlpatterns = [
     path("", TemplateView.as_view(template_name="home.html"), name="home"),
     path("about-us/", TemplateView.as_view(template_name="about_us.html"), name="about_us"),
     path("contact-us/", views.ContactUsView.as_view(), name="contact_us"),
+    path("signup/", views.SignupView.as_view(), name="signup"),
     path("products/<slug:tag>/", views.ProductListView.as_view(), name="product_list"),
     path('product/<slug:slug>/', views.ProductDetailView.as_view(), name='product_detail'),
 ]
