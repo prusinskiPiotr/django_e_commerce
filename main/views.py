@@ -3,9 +3,10 @@ from django.views.generic import ListView, DetailView
 from django.views.generic.edit import FormView
 from django.shortcuts import get_object_or_404
 from main import forms, models
-import logging
-from django.contrib.auth import login, authenticate
 from django.contrib import messages
+from django.contrib.auth import login, authenticate
+from django.contrib.auth.views import LoginView
+import logging
 
 logger = logging.getLogger(__name__)
 
@@ -71,4 +72,7 @@ class SignupView(FormView):
         )
 
         return response
-        
+
+class UserLoginView(LoginView):
+        template_name="login.html"
+        form_class = forms.AuthenticationForm
