@@ -7,6 +7,8 @@ import logging
 from django.contrib.auth import login, authenticate
 from django.contrib import messages
 
+logger = logging.getLogger(__name__)
+
 
 class ContactUsView(FormView):
     template_name = "contact_us.html"
@@ -51,7 +53,7 @@ class SignupView(FormView):
         redirect_to = self.request.GET.get("next", "/")
         return redirect_to
 
-    def form(self, form):
+    def form_valid(self, form):
         response = super().form_valid(form)
         form.save()
         email = form.cleaned_data.get("email")
@@ -69,3 +71,4 @@ class SignupView(FormView):
         )
 
         return response
+        
