@@ -8,7 +8,7 @@ def basket_middleware(get_response):
             basket = models.Basket.objects.get(id=basket_id)
             request.basket = basket
         else:
-            reqeust.basket=None
+            request.basket=None
         response = get_response(request)
         return response
     return middleware
