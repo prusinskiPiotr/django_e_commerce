@@ -18,4 +18,9 @@
 {% else %}
     <p>You have no items in basket.</p>
 {% endif %}
+{% block js %}
+    {% if formset %}
+        {{ formset.media }}
+    {% endif %}
+{% endblock js %}
 {% endblock content %}
